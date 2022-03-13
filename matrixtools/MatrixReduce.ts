@@ -7,7 +7,9 @@ export function MatrixReduce<R extends number, C extends number>(
         previousValue: number,
         currentValue: number,
         row: number,
-        column: number
+        column: number,
+        previousMatrix: Matrix<R, C>,
+        currentMatrix: Matrix<R, C>
     ) => number,
     matrix1: Matrix<R, C>,
     ...matrixs: Matrix<R, C>[]
@@ -21,7 +23,14 @@ export function MatrixReduce<R extends number, C extends number>(
     );
     return matrixs.reduce((previousmatrix, m) => {
         return MatrixMap(previousmatrix, (previousvalue, i, j) => {
-            return callback(previousvalue, m.get(i, j), i, j);
+            return callback(
+                previousvalue,
+                m.get(i, j),
+                i,
+                j,
+                previousmatrix,
+                m
+            );
         });
     }, matrix1);
 }
