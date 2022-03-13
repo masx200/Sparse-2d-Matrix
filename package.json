@@ -1,4 +1,7 @@
 {
+    "publishConfig": {
+        "access": "public"
+    },
     "name": "@masx200/sparse-2d-matrix",
     "private": false,
     "version": "1.0.0",
