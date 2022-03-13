@@ -22,7 +22,7 @@ yarn add "@masx200/sparse-2d-matrix"
 
 支持 typescript,可以查看类型声明文件
 
-[./src/index.ts](./src/index.ts)
+[./src/index.ts](https://gitee.com/masx200/Sparse-2d-Matrix/blob/master/src/index.ts)
 
 1.导入
 
@@ -176,7 +176,7 @@ import {
 
 查看更多示例
 
-[./test/test-sparse-matrix.ts](./test/test-sparse-matrix.ts)
+[./test/test-sparse-matrix.ts](https://gitee.com/masx200/Sparse-2d-Matrix/blob/master/test/test-sparse-matrix.ts)
 
 ```js
 MatrixEquals(
