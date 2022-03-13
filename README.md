@@ -20,7 +20,9 @@ yarn add "@masx200/sparse-2d-matrix"
 
 #### 使用说明
 
-支持 typescript,可以查看类型声明文件
+支持 typescript,可以查看类型声明文件 
+
+src/index.ts
 
 1.导入
 
@@ -51,7 +53,25 @@ import {
 
 `isMatrix`,判断是不是稀疏非对称二维矩阵
 
-3.用例
+`MatrixAdd`,返回一系列矩阵的加法结果的新矩阵
+
+`MatrixAssign`,用一个矩阵给另一个矩阵赋值
+
+`MatrixMultiplication`,返回一系列矩阵的乘法结果的新矩阵
+
+`MatrixMultiplyNumber`,返回矩阵和数字的乘法结果的新矩阵
+
+`MatrixOfArrays`,从数组创建矩阵
+
+`MatrixOfOnes`,创建全 1 矩阵
+
+`MatrixReduce`,对矩阵中的每个元素执行一个由您提供的`reducer`函数(升序执行)，将其结果汇总为单个返回值放入新矩阵的对应位置,返回这个新矩阵
+
+3.对象类型
+
+`Matrix`:非对称二维稀疏矩阵
+
+4.用例
 
 ```js
 MatrixEquals(
