@@ -20,6 +20,8 @@ yarn add "@masx200/sparse-2d-matrix"
 
 #### 使用说明
 
+支持typescript,可以查看类型声明文件
+
 1.导入
 
 ```js
@@ -36,6 +38,16 @@ import {
 ```
 
 2.用例
+
+```js
+MatrixEquals(
+    MatrixOfArrays([
+        [1, 0],
+        [0, 1],
+    ]),
+    MatrixIdentity({ row: 2, column: 2 })
+);
+```
 
 ```js
 MatrixEquals(
