@@ -22,7 +22,7 @@ yarn add "@masx200/sparse-2d-matrix"
 
 支持 typescript,可以查看类型声明文件
 
-./src/index.ts
+[./src/index.ts](./src/index.ts)
 
 1.导入
 
