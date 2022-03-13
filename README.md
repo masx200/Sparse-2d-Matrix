@@ -65,11 +65,31 @@ import {
 
 `MatrixOfOnes`,创建全 1 矩阵
 
-`MatrixReduce`,对每个矩阵中的每个元素执行一个由您提供的`reducer`函数(升序执行)，将其结果汇总为单个返回值放入新矩阵的对应位置,返回这个新矩阵
+`MatrixReduceSeries`,创建一个新矩阵,这个矩阵的每个元素由输入的每个矩阵对应位置的元素的由您提供的`reducer`函数(升序执行)生成,返回这个新矩阵.
+
+`MatrixSome`,测试在矩阵中是不是至少有 1 个元素通过了被提供的函数测试。它返回的是一个`Boolean`类型的值.
+
+`MatrixMap`,创建一个新矩阵，其结果是该矩阵中的每个元素是调用一次提供的函数后的返回值的新矩阵.
+
+`MatrixForEach`,对矩阵的每个元素执行一次给定的函数。
+
+`MatrixReduceSingle`,对一个矩阵中的每个矩阵中的每个元素执行一个由您提供的`reducer`函数(升序执行)，将其结果汇总为单个返回值.
+
+`MatrixFrom`,返回对一个矩阵克隆得到新矩阵.
+
+`MatrixGetColumn`,返回矩阵中的某一列.
+
+`MatrixGetRow`,返回矩阵中的某一行.
+
+`MatrixSubtract`,返回第一个矩阵减去第二个矩阵的结果的新矩阵.
+
+`MatrixIdentity`,创建一个单位矩阵,可以不是方阵
 
 3.对象类型
 
 `Matrix`:非对称二维稀疏矩阵
+
+`MatrixSymmetry`:对称二维稀疏矩阵
 
 4.用例
 

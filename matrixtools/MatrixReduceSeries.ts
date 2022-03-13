@@ -2,7 +2,7 @@ import { asserttrue } from "../test/asserttrue";
 import { Matrix } from "./Matrix";
 import { MatrixMap } from "./MatrixMap";
 
-export function MatrixReduce<R extends number, C extends number>(
+export function MatrixReduceSeries<R extends number, C extends number>(
     callback: (
         previousValue: number,
         currentValue: number,

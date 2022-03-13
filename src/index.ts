@@ -26,7 +26,8 @@ import { MatrixOfDiagonal } from "../matrixtools/MatrixOfDiagonal";
 import { MatrixOfOnes } from "../matrixtools/MatrixOfOnes";
 import { MatrixOfZeros } from "../matrixtools/MatrixOfZeros";
 import type { MatrixOptions } from "../matrixtools/MatrixOptions";
-import { MatrixReduce } from "../matrixtools/MatrixReduce";
+import { MatrixReduceSeries } from "../matrixtools/MatrixReduceSeries";
+import { MatrixReduceSingle } from "../matrixtools/MatrixReduceSingle";
 import { MatrixSome } from "../matrixtools/MatrixSome";
 import { MatrixSubtract } from "../matrixtools/MatrixSubtract";
 import type { MatrixSymmetry } from "../matrixtools/MatrixSymmetry";
@@ -49,10 +50,11 @@ export {
     MatrixMultiplyNumber,
     MatrixOfArrays,
     MatrixOfOnes,
-    MatrixReduce,
+    MatrixReduceSeries,
     MatrixSome,
     MatrixMap,
     MatrixForEach,
+    MatrixReduceSingle,
     MatrixFrom,
     MatrixGetColumn,
     MatrixGetRow,

@@ -1,6 +1,6 @@
 import { MatrixCreate } from "./MatrixCreate";
 import { Matrix } from "./Matrix";
-/**单位矩阵 */
+/**单位矩阵,可以不是方阵 */
 export function MatrixIdentity<R extends number, C extends number>({
     row,
     column,
