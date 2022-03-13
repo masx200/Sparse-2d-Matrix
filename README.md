@@ -20,7 +20,7 @@ yarn add "@masx200/sparse-2d-matrix"
 
 #### 使用说明
 
-支持 typescript,可以查看类型声明文件 
+支持 typescript,可以查看类型声明文件
 
 src/index.ts
 
@@ -65,7 +65,7 @@ import {
 
 `MatrixOfOnes`,创建全 1 矩阵
 
-`MatrixReduce`,对矩阵中的每个元素执行一个由您提供的`reducer`函数(升序执行)，将其结果汇总为单个返回值放入新矩阵的对应位置,返回这个新矩阵
+`MatrixReduce`,对每个矩阵中的每个元素执行一个由您提供的`reducer`函数(升序执行)，将其结果汇总为单个返回值放入新矩阵的对应位置,返回这个新矩阵
 
 3.对象类型
 
