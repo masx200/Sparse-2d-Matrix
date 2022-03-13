@@ -85,6 +85,10 @@ import {
 
 `MatrixIdentity`,创建一个单位矩阵,可以不是方阵
 
+`MatrixEquals`,判断一系列矩阵是否全部相等
+
+`MatrixEvery`,测试在矩阵中是不是全部元素通过了被提供的函数测试。它返回的是一个`Boolean`类型的值.
+
 3.对象类型
 
 `Matrix`:非对称二维稀疏矩阵
