@@ -73,6 +73,10 @@ import {
 
 4.用例
 
+查看更多示例
+
+[./test/test-sparse-matrix.ts](./test/test-sparse-matrix.ts)
+
 ```js
 MatrixEquals(
     MatrixOfArrays([
