@@ -3,7 +3,6 @@ import { assertMatrixRowColumn } from "../matrixtools/assertMatrixRowColumn";
 import { isMatrix } from "../matrixtools/isMatrix";
 import { MatrixAdd } from "../matrixtools/MatrixAdd";
 import { MatrixAssign } from "../matrixtools/MatrixAssign";
-import { MatrixMultiplication } from "../matrixtools/MatrixMultiplication";
 import { MatrixCreate } from "../matrixtools/MatrixCreate";
 import { MatrixEquals } from "../matrixtools/MatrixEquals";
 import { MatrixEvery } from "../matrixtools/MatrixEvery";
@@ -14,25 +13,43 @@ import { MatrixGetRow } from "../matrixtools/MatrixGetRow";
 import { MatrixIdentity } from "../matrixtools/MatrixIdentity";
 import { MatrixMax } from "../matrixtools/MatrixMax";
 import { MatrixMin } from "../matrixtools/MatrixMin";
+import { MatrixMultiplication } from "../matrixtools/MatrixMultiplication";
 import { MatrixMultiplyNumber } from "../matrixtools/MatrixMultiplyNumber";
 import { MatrixOfArrays } from "../matrixtools/MatrixOfArrays";
 import { MatrixOfOnes } from "../matrixtools/MatrixOfOnes";
+import { MatrixOfZeros } from "../matrixtools/MatrixOfZeros";
 import { MatrixSome } from "../matrixtools/MatrixSome";
 import { MatrixSubtract } from "../matrixtools/MatrixSubtract";
 import { MatrixToArrays } from "../matrixtools/MatrixToArrays";
 import { MatrixTranspose } from "../matrixtools/MatrixTranspose";
-import { MatrixOfZeros } from "../matrixtools/MatrixOfZeros";
+import {
+    isMatrixSymmetry,
+    MatrixGetDiagonal,
+    MatrixOfDiagonal,
+    MatrixSymmetryCreate,
+    MatrixTrace,
+} from "../src/index";
 import { assertshouldcatcherror } from "./assertshouldcatcherror";
 import { asserttrue } from "./asserttrue";
-import { MatrixGetDiagonal, MatrixOfDiagonal, MatrixTrace } from "../src";
 
 export function testMatrix() {
     console.log("test Matrix start");
+    asserttrue(!isMatrixSymmetry([]));
+    asserttrue(!isMatrixSymmetry({}));
+    asserttrue(!isMatrixSymmetry(1));
+    asserttrue(!isMatrix(false));
+    asserttrue(isMatrix(MatrixSymmetryCreate({ row: 1 })));
+
+    asserttrue(isMatrixSymmetry(MatrixSymmetryCreate({ row: 1 })));
     const matrix3 = MatrixCreate({
         row: 3,
         column: 2,
         initializer: (i, j) => i + j,
     });
+    asserttrue(matrix3.has(0, 0));
+    asserttrue(matrix3.has(2, 1));
+    asserttrue(!matrix3.has(10, 0));
+    asserttrue(!matrix3.has(10, 100));
     assertshouldcatcherror(() => {
         MatrixOfArrays([]);
     });

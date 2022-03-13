@@ -33,5 +33,15 @@
         "rollup-plugin-terser": "^7.0.2",
         "terser": "^5.12.0"
     },
-    "dependencies": {}
+    "description": "实验性的稀疏二维矩阵,实现和一些工具函数,对称矩阵,加减乘除,单位矩阵...",
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://gitee.com/masx200/Sparse-2d-Matrix.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }

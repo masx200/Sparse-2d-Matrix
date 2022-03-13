@@ -28,14 +28,44 @@ yarn add "@masx200/sparse-2d-matrix"
 
 ```js
 import {
-    MatrixEquals,
-    MatrixCreate,
-    MatrixAdd,
-    MatrixOfOnes,
-    MatrixOfArrays,
-    MatrixToArrays,
     MatrixOfDiagonal,
+    isMatrixSymmetry,
+    isMatrixRowColumn,
+    isMatrix,
+    isMatrixColumn,
+    isMatrixRow,
+    Matrix,
+    MatrixAdd,
+    MatrixAssign,
     MatrixMultiplication,
+    MatrixMultiplyNumber,
+    MatrixOfArrays,
+    MatrixOfOnes,
+    MatrixReduceSeries,
+    MatrixSome,
+    MatrixMap,
+    MatrixForEach,
+    MatrixReduceSingle,
+    MatrixFrom,
+    MatrixGetColumn,
+    MatrixGetRow,
+    MatrixSubtract,
+    MatrixIdentity,
+    MatrixSymmetry,
+    MatrixSymmetryCreate,
+    MatrixEquals,
+    MatrixEvery,
+    MatrixFill,
+    MatrixMax,
+    MatrixMin,
+    MatrixSymmetryOptions,
+    MatrixToArrays,
+    MatrixCreate,
+    MatrixOptions,
+    MatrixTranspose,
+    MatrixOfZeros,
+    MatrixGetDiagonal,
+    MatrixTrace,
 } from "@masx200/sparse-2d-matrix";
 ```
 
@@ -45,7 +75,7 @@ import {
 
 `MatrixSymmetryCreate`,根据行数,列数,初始化函数来创建一个对称的二维稀疏矩阵
 
-`MatrixOfDiagonal`,创建一个对角矩阵
+`MatrixOfDiagonal`,创建一个对角矩阵.
 
 `isMatrixSymmetry`,判断是不是稀疏对称二维矩阵
 
@@ -61,7 +91,7 @@ import {
 
 `MatrixMultiplyNumber`,返回矩阵和数字的乘法结果的新矩阵
 
-`MatrixOfArrays`,从数组创建矩阵
+`MatrixOfArrays`,从数组表示创建矩阵.
 
 `MatrixOfOnes`,创建全 1 矩阵
 
@@ -89,13 +119,60 @@ import {
 
 `MatrixEvery`,测试在矩阵中是不是全部元素通过了被提供的函数测试。它返回的是一个`Boolean`类型的值.
 
+`MatrixFill`,使用输入的数值填充矩阵的每个元素.
+
+`MatrixMax`,创建一个新矩阵,这个矩阵的每个元素由输入的每个矩阵对应位置的中最大值生成,返回这个新矩阵.
+
+`MatrixMin`,创建一个新矩阵,这个矩阵的每个元素由输入的每个矩阵对应位置的中最小值生成,返回这个新矩阵.
+
+`MatrixToArrays`,把矩阵转化为数组表示.
+
+`MatrixTranspose`,获得矩阵的转置矩阵.
+
+`MatrixOfZeros`,创建全 0 矩阵
+
+`MatrixGetDiagonal`,获得矩阵的对角线元素.
+
+`MatrixTrace`,获得矩阵的对角线元素之和.
+
 3.对象类型
 
 `Matrix`:非对称二维稀疏矩阵
 
 `MatrixSymmetry`:对称二维稀疏矩阵
 
-4.用例
+矩阵对象类型通用属性和方法:
+
+`values`:返回矩阵中所有元素组成的数组.
+
+`keys`:返回矩阵中所有行与列组成的数组.
+
+`entries`:返回矩阵中所有行与列与对应元素组成的数组.
+
+`get`:返回矩阵中特定行与列的对应元素,不可以输入负数.
+
+`at`:返回矩阵中特定行与列的对应元素,可以输入负数.
+
+`set`:修改矩阵中特定行与列的对应元素,不可以输入负数.
+
+`has`:判断矩阵中特定行与列的元素是否存在.
+
+`row`,矩阵的总行数
+
+`column`,矩阵的总行数
+
+4.接口
+
+`MatrixOptions`,创建矩阵的参数对象拥有以下参数
+
+`row`,矩阵的行数
+
+`column`,矩阵的总行数
+
+`initializer`,矩阵的初始化函数
+
+
+5.用例
 
 查看更多示例
 

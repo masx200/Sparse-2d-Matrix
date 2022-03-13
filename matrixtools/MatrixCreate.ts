@@ -77,9 +77,18 @@ export function MatrixCreate<
             return [left, right, get(left, right)];
         });
     }
-    const has = (row: number, column: number) =>
-        valuesrecord.has(numberstostringkeynotsymmetry(row, column));
-
+    const has = (inputrow: number, inputcolumn: number) => {
+        if (
+            inputrow > row - 1 ||
+            inputcolumn > column - 1 ||
+            inputrow < 0 ||
+            inputcolumn < 0
+        ) {
+            return false;
+        } else {
+            return true;
+        }
+    };
     const obj: Matrix<R, C> = {
         at,
         [MatrixSymbol]: true,

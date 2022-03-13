@@ -1,6 +1,6 @@
 import { MatrixCreate } from "./MatrixCreate";
 import { Matrix } from "./Matrix";
-/**单位矩阵 */
+/**全一矩阵 */
 export function MatrixOfOnes<R extends number, C extends number>({
     row,
     column,

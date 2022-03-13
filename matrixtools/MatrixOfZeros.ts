@@ -1,6 +1,6 @@
 import { MatrixCreate } from "./MatrixCreate";
 import { Matrix } from "./Matrix";
-/**单位矩阵 */
+/**全零矩阵 */
 export function MatrixOfZeros<R extends number, C extends number>({
     row,
     column,

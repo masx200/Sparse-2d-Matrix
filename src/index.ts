@@ -1,5 +1,6 @@
 import { isMatrix } from "../matrixtools/isMatrix";
 import { isMatrixColumn } from "../matrixtools/isMatrixColumn";
+import "core-js/actual/array/at";
 import { isMatrixRow } from "../matrixtools/isMatrixRow";
 import { isMatrixRowColumn } from "../matrixtools/isMatrixRowColumn";
 import { isMatrixSymmetry } from "../matrixtools/isMatrixSymmetry";
