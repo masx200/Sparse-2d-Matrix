@@ -1,10 +1,10 @@
 {
     "files": [
-        "test",
         "functions",
         "matrixtools",
         "src",
-        "dist"
+        "dist/index.cjs.js",
+        "dist/index.es.js"
     ],
     "publishConfig": {
         "access": "public"
