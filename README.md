@@ -20,7 +20,7 @@ yarn add "@masx200/sparse-2d-matrix"
 
 #### 使用说明
 
-支持typescript,可以查看类型声明文件
+支持 typescript,可以查看类型声明文件
 
 1.导入
 
@@ -37,7 +37,21 @@ import {
 } from "@masx200/sparse-2d-matrix";
 ```
 
-2.用例
+2.常用函数
+
+`MatrixCreate`,根据行数,列数,初始化函数来创建一个非对称二维稀疏矩阵
+
+`MatrixSymmetryCreate`,根据行数,列数,初始化函数来创建一个对称的二维稀疏矩阵
+
+`MatrixOfDiagonal`,创建一个对角矩阵
+
+`isMatrixSymmetry`,判断是不是稀疏对称二维矩阵
+
+`isMatrixRowColumn`,`isMatrixColumn`,`isMatrixRow`,判断矩阵是否是指定的行数和列数
+
+`isMatrix`,判断是不是稀疏非对称二维矩阵
+
+3.用例
 
 ```js
 MatrixEquals(
