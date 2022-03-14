@@ -34,6 +34,14 @@ import { asserttrue } from "./asserttrue";
 
 export function testMatrix() {
     console.log("test Matrix start");
+    const ms1 = MatrixSymmetryCreate({ row: 10 });
+    asserttrue(0 === ms1.get(0, 9));
+
+    ms1.set(8, 7, 99);
+    asserttrue(99 === ms1.get(8, 7));
+    asserttrue(ms1.has(8, 7));
+    asserttrue(!ms1.has(18, 7));
+    asserttrue(99 === ms1.get(7, 8));
     asserttrue(!isMatrixSymmetry([]));
     asserttrue(!isMatrixSymmetry({}));
     asserttrue(!isMatrixSymmetry(1));

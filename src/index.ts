@@ -37,7 +37,13 @@ import type { MatrixSymmetryOptions } from "../matrixtools/MatrixSymmetryOptions
 import { MatrixToArrays } from "../matrixtools/MatrixToArrays";
 import { MatrixTrace } from "../matrixtools/MatrixTrace";
 import { MatrixTranspose } from "../matrixtools/MatrixTranspose";
+import { assertMatrixColumn } from "../matrixtools/assertMatrixColumn";
+import { assertMatrixRow } from "../matrixtools/assertMatrixRow";
+import { assertMatrixRowColumn } from "../matrixtools/assertMatrixRowColumn";
 export {
+    assertMatrixColumn,
+    assertMatrixRow,
+    assertMatrixRowColumn,
     MatrixOfDiagonal,
     isMatrixSymmetry,
     isMatrixRowColumn,

@@ -33,11 +33,10 @@ export function MatrixSymmetryCreate<R extends number = number>(
     // opts?.default ?? 0;
     function get(row: number, column: number): number {
         assertnotoutofbounds(row, column);
-        return matrix.has(row, column)
-            ? matrix.get(row, column)
-            : matrix.has(column, row)
-            ? matrix.get(column, row)
-            : defaultvalue;
+        return (
+            matrix.get(Math.min(row, column), Math.max(row, column)) ??
+            defaultvalue
+        );
     }
 
     function set(row: number, column: number, value: number): void {

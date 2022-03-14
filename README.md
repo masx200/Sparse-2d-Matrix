@@ -66,6 +66,9 @@ import {
     MatrixOfZeros,
     MatrixGetDiagonal,
     MatrixTrace,
+    assertMatrixColumn,
+    assertMatrixRow,
+    assertMatrixRowColumn,
 } from "@masx200/sparse-2d-matrix";
 ```
 
@@ -80,6 +83,8 @@ import {
 `isMatrixSymmetry`,判断是不是稀疏对称二维矩阵
 
 `isMatrixRowColumn`,`isMatrixColumn`,`isMatrixRow`,判断矩阵是否是指定的行数和列数
+
+`assertMatrixColumn`,`assertMatrixRow`,`assertMatrixRowColumn`,断言矩阵是否是指定的行数和列数
 
 `isMatrix`,判断是不是稀疏非对称二维矩阵
 
