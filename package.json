@@ -11,7 +11,7 @@
     },
     "name": "@masx200/sparse-2d-matrix",
     "private": false,
-    "version": "1.0.2",
+    "version": "1.0.3",
     "main": "dist/index.cjs.js",
     "module": "dist/index.es.js",
     "types": "src/index.ts",
