@@ -16,7 +16,7 @@
     "test": "jest",
     "build": "tsc && vite build",
     "check-type": "tsc",
-    "format": "npx prettier --write *.json *.ts *.html */*.html */*.ts */*.css *.md *.js */*.vue"
+    "format": "npx prettier --write *.json *.ts *.html */*.html */*.ts */*.css *.md *.js "
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
