@@ -108,7 +108,7 @@ import {
 
 `MatrixForEach`,对矩阵的每个元素执行一次给定的函数。
 
-`MatrixReduceSingle`,对一个矩阵中的每个矩阵中的每个元素执行一个由您提供的`reducer`函数(升序执行)，将其结果汇总为单个返回值.
+`MatrixReduceSingle`,对一个矩阵中的每个元素执行一个由您提供的`reducer`函数(升序执行)，将其结果汇总为单个返回值.
 
 `MatrixFrom`,返回对一个矩阵克隆得到新矩阵.
 

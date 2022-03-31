@@ -46,14 +46,22 @@ export function MatrixSymmetryCreate<R extends number = number>(
     }
     // console.log(Matrix);
     function values(): number[] {
-        return Array.from(matrix.values());
+        //fix bug
+        // return Array.from(matrix.values());
+        return Array.from(keys()).map(([left, right]) => {
+            return get(left, right);
+        });
     }
     function keys(): [number, number][] {
         return Array.from(matrix.keys());
     }
 
     function entries(): [number, number, number][] {
-        return Array.from(matrix.entries());
+        // return Array.from(matrix.entries());
+        //fix bug
+        return Array.from(keys()).map(([left, right]) => {
+            return [left, right, get(left, right)];
+        });
     }
     const has = (row: number, column: number) =>
         matrix.has(row, column) || matrix.has(column, row);

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "allowJs": false,
         "removeComments": true,
         "declaration": true,
         "target": "ESNext",
@@ -17,5 +18,5 @@
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src", "test", "functions", "matrixtools"]
+    "include": ["src", "test", "functions", "matrixtools", "__tests__"]
 }
