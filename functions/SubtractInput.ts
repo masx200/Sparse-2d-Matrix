@@ -1,6 +1,6 @@
-import { ExtractArray } from "./ExtractArray";
+import { ExtractArrayItem } from "./ExtractArrayItem";
 
-export type SubtractInput = ExtractArray<
+export type SubtractInput = ExtractArrayItem<
     [
         0,
         1,
