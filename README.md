@@ -285,3 +285,11 @@ isEqual(
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
+
+# changelog
+
+2022 年 4 月 1 日 14:07:16
+
+解决`Map maximum size exceeded`最大为 `16777216`的问题.
+
+新增 类 `HugeMap`,并导出,可以处理大小超过`16777216`的`Map`.

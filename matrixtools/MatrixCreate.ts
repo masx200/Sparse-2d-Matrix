@@ -4,7 +4,8 @@ import { MatrixSymbol } from "./MatrixSymbol";
 import { Matrix } from "./Matrix";
 import { asserttrue } from "../test/asserttrue";
 import { MatrixOptions } from "./MatrixOptions";
-
+import { HugeMap } from "./HugeMap";
+import { max_size_of_map } from "./max_size_of_map";
 /* 创建稀疏二维矩阵 非对称*/
 export function MatrixCreate<
     R extends number = number,
@@ -29,7 +30,13 @@ export function MatrixCreate<
     if (!(row > 0 && column > 0)) {
         throw new Error(" row, column should greater than 0");
     }
-    const valuesrecord = new Map<`${number},${number}`, number>();
+    /* Map maximum size exceeded 
+    16777216
+    */
+    const valuesrecord: Map<`${number},${number}`, number> =
+        row * column < max_size_of_map
+            ? new Map<`${number},${number}`, number>()
+            : new HugeMap<`${number},${number}`, number>();
     const defaultvalue = 0;
 
     //opts?.default ?? 0;
