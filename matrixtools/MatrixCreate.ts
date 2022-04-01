@@ -7,17 +7,48 @@ import { MatrixOptions } from "./MatrixOptions";
 
 import { max_size_of_map } from "./max_size_of_map";
 import { MatrixToArrays } from "./MatrixToArrays";
+import { assertnumber } from "../test/assertnumber";
 /* 创建稀疏二维矩阵 非对称*/
 export function MatrixCreate<
     R extends number = number,
     C extends number = number
 >(opts: MatrixOptions<R, C>): Matrix<R, C> {
     const { row, column, initializer } = opts;
-    if (row * column > max_size_of_map) {
-        throw new Error(
-            "can not create map size greater than " + max_size_of_map
+
+    /* Map maximum size exceeded 
+    16777216
+    */
+    const valuesrecord: Map<
+        number,
+        Map<`${number},${number}`, number>
+    > = new Map();
+    function get_index_of_row_and_column(
+        inputrow: number,
+        inputcolumn: number
+    ): number {
+        return Math.floor(
+            ((inputrow + 1) * (1 + inputcolumn)) / max_size_of_map
         );
     }
+    function get_map_of_row_and_column(
+        inputrow: number,
+        inputcolumn: number
+    ): Map<`${number},${number}`, number> {
+        const index = get_index_of_row_and_column(inputrow, inputcolumn);
+        const map = valuesrecord.get(index);
+        if (map) {
+            return map;
+        } else {
+            const created = new Map();
+            valuesrecord.set(index, created);
+            return created;
+        }
+    }
+    // if (row * column > max_size_of_map) {
+    //     throw new Error(
+    //         "can not create map size greater than " + max_size_of_map
+    //     );
+    // }
     function assertnotoutofbounds(inputrow: number, inputcolumn: number) {
         //序号应该从0开始到row-1结束
         if (
@@ -36,23 +67,16 @@ export function MatrixCreate<
     if (!(row > 0 && column > 0)) {
         throw new Error(" row, column should greater than 0");
     }
-    /* Map maximum size exceeded 
-    16777216
-    */
-    const valuesrecord: Map<`${number},${number}`, number> = new Map<
-        `${number},${number}`,
-        number
-    >();
 
     const defaultvalue = 0;
 
     //opts?.default ?? 0;
     function get(inputrow: number, inputcolumn: number): number {
         assertnotoutofbounds(inputrow, inputcolumn);
+        const map = get_map_of_row_and_column(inputrow, inputcolumn);
         return (
-            valuesrecord.get(
-                numberstostringkeynotsymmetry(inputrow, inputcolumn)
-            ) ?? defaultvalue
+            map.get(numberstostringkeynotsymmetry(inputrow, inputcolumn)) ??
+            defaultvalue
         );
     }
     const at = (inputrow: number, inputcolumn: number) => {
@@ -63,16 +87,16 @@ export function MatrixCreate<
     };
 
     function set(inputrow: number, inputcolumn: number, value: number): void {
-        asserttrue(typeof value === "number");
+        assertnumber(value);
         assertnotoutofbounds(inputrow, inputcolumn);
-        if (defaultvalue === value && get(inputrow, inputcolumn) === value) {
+        asserttrue(!Number.isNaN(value));
+        const map = get_map_of_row_and_column(inputrow, inputcolumn);
+        if (defaultvalue === value) {
+            map.delete(numberstostringkeynotsymmetry(inputrow, inputcolumn));
             return;
         }
-        asserttrue(!Number.isNaN(value));
-        valuesrecord.set(
-            numberstostringkeynotsymmetry(inputrow, inputcolumn),
-            value
-        );
+
+        map.set(numberstostringkeynotsymmetry(inputrow, inputcolumn), value);
     }
     // console.log(valuesrecord);
     function values(): number[] {
@@ -133,10 +157,10 @@ export function MatrixCreate<
     if (initializer) {
         for (let [i, j] of matrixkeyiterator(row, column)) {
             const value = initializer(i, j);
-            if (typeof value === "number") {
+            if (typeof value === "number" && !Number.isNaN(value)) {
                 set(i, j, value);
             } else {
-                throw new Error("invalid return value");
+                throw new Error("invalid return value:" + value);
             }
         }
     }

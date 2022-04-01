@@ -20,12 +20,13 @@ export default defineConfig(({ mode, command }) => {
         // esbuild: { drop: isdrop ? ["console", "debugger"] : undefined },
         root: path.resolve(__dirname, "src"),
         plugins: [
+            //@ts-ignore
             ts({
                 transpiler: "typescript",
             }),
             // mode === "production" &&
             //     command === "build" &&
-
+            //@ts-ignore
             babel({
                 extensions: [".ts", ".js"],
                 presets: [
@@ -53,6 +54,7 @@ export default defineConfig(({ mode, command }) => {
                     // ],
                 ],
             }),
+            //@ts-ignore
             getBabelOutputPlugin({
                 presets: ["babel-preset-minify"],
                 // extensions: [".ts", ".js"],
@@ -61,12 +63,13 @@ export default defineConfig(({ mode, command }) => {
                     // "@babel/plugin-syntax-typescript",
                 ].filter(Boolean),
             }),
+            //@ts-ignore
             terser(terserOptions),
         ],
         build: {
             lib: {
                 entry: path.resolve(__dirname, "src", "index.ts"),
-                formats: ["es", "cjs"],
+                formats: ["es" /* , "cjs" */],
                 fileName: "index",
             },
             minify: false,
