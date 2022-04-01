@@ -6,6 +6,7 @@ import { asserttrue } from "../test/asserttrue";
 import { MatrixOptions } from "./MatrixOptions";
 import { HugeMap } from "./HugeMap";
 import { max_size_of_map } from "./max_size_of_map";
+import { MatrixToArrays } from "./MatrixToArrays";
 /* 创建稀疏二维矩阵 非对称*/
 export function MatrixCreate<
     R extends number = number,
@@ -97,6 +98,12 @@ export function MatrixCreate<
         }
     };
     const obj: Matrix<R, C> = {
+        [Symbol.iterator]() {
+            return MatrixToArrays(obj)[Symbol.iterator]();
+        },
+        toJSON() {
+            return MatrixToArrays(obj);
+        },
         at,
         [MatrixSymbol]: true,
         row: row as R,

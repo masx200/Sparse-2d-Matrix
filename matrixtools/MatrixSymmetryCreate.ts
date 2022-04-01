@@ -3,6 +3,7 @@ import { matrixkeyiterator } from "./matrixkeyiterator";
 import { MatrixCreate } from "./MatrixCreate";
 import { MatrixSymmetry } from "./MatrixSymmetry";
 import { MatrixSymmetryOptions } from "./MatrixSymmetryOptions";
+import { MatrixToArrays } from "./MatrixToArrays";
 /**
  *
  * 创建稀疏二维矩阵对称式
@@ -65,9 +66,16 @@ export function MatrixSymmetryCreate<R extends number = number>(
     }
     const has = (row: number, column: number) =>
         matrix.has(row, column) || matrix.has(column, row);
+    const at = (inputrow: number, inputcolumn: number) => {
+        return get(
+            inputrow < 0 ? row + inputrow : inputrow,
+            inputcolumn < 0 ? column + inputcolumn : column
+        );
+    };
 
     const obj: MatrixSymmetry<R> = {
         ...matrix,
+        at,
         row: row as R,
         column: column as R,
         // delete: (row: number, column: number) => {
@@ -86,6 +94,12 @@ export function MatrixSymmetryCreate<R extends number = number>(
         get,
         set,
         [Symbol.toStringTag]: "MatrixSymmetry",
+        toJSON() {
+            return MatrixToArrays(obj);
+        },
+        [Symbol.iterator]() {
+            return MatrixToArrays(obj)[Symbol.iterator]();
+        },
     };
 
     if (initializer) {

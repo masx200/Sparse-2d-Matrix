@@ -166,6 +166,10 @@ import {
 
 `column`,矩阵的总行数
 
+`toJSON`,把矩阵转化为数组表示
+
+`[Symbol.iterator]`,把矩阵转化为数组表示的迭代器
+
 4.接口
 
 `MatrixOptions`,创建矩阵的参数对象拥有以下参数

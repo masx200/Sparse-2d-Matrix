@@ -2,6 +2,8 @@ import { MatrixSymbol } from "./MatrixSymbol";
 
 /* 稀疏二维矩阵 非对称式*/
 export type Matrix<R extends number = number, C extends number = number> = {
+    [Symbol.iterator](): IterableIterator<number[]>;
+    toJSON: () => number[][];
     values: () => number[];
     keys: () => [number, number][];
     entries: () => [number, number, number][];
