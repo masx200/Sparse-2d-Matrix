@@ -293,3 +293,5 @@ isEqual(
 解决`Map maximum size exceeded`最大为 `16777216`的问题.
 
 新增 类 `HugeMap`,并导出,可以处理大小超过`16777216`的`Map`.
+
+使用`MatrixCreate`创建矩阵时,如果矩阵大小超过`16777216`,则使用 `HugeMap`代替`Map`来保存矩阵的内容.
