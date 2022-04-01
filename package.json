@@ -19,7 +19,7 @@
     "scripts": {
         "test": "jest",
         "build": "tsc && vite build&& rollup -c rollup.config.mjs",
-        "check-type": "tsc",
+        "check": "tsc",
         "format": "npx prettier --write *.json *.ts  */*.ts *.md *.js "
     },
     "devDependencies": {

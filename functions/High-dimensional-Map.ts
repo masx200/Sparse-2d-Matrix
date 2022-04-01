@@ -3,7 +3,7 @@ export type HighDimensionalMap4<K, V> = Map<KeysOfHighDimensionalMap4<K>, V> & {
     raw: HighDimensionalMapRaw4<K, V>;
 };
 
-export function createHighDimensionalMap4<K, V>(): HighDimensionalMap4<K, V> {}
+// export function createHighDimensionalMap4<K, V>(): HighDimensionalMap4<K, V> {}
 //
 export type KeysOfHighDimensionalMap4<K> = [K, K, K, K];
 export type ArrayOfLength<T, L extends number> = ArrayOfLengthPickNumber<
@@ -38,7 +38,7 @@ declare let aaa: KeysOfHighDimensionalMap4<number>;
 declare let bbb: ArrayOfLength<number, 4>;
 
 /* 不能将类型“ArrayOfLength<number, 4>”分配给类型“KeysOfHighDimensionalMap4<number>”。ts(2322) */
-aaa = bbb;
+// aaa = bbb;
 
 //
 bbb = aaa;
