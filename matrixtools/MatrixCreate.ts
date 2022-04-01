@@ -5,7 +5,7 @@ import { Matrix } from "./Matrix";
 import { asserttrue } from "../test/asserttrue";
 import { MatrixOptions } from "./MatrixOptions";
 
-// import { max_size_of_map } from "./max_size_of_map";
+import { max_size_of_map } from "./max_size_of_map";
 import { MatrixToArrays } from "./MatrixToArrays";
 import { assertnumber } from "../test/assertnumber";
 /* 创建稀疏二维矩阵 非对称*/
