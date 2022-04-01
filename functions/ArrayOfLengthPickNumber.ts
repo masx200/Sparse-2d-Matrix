@@ -10,5 +10,9 @@ import { SubtractOne } from "./SubtractOne";
 // aaa = [1, 2, 3, 45];
 // bbb = [1, 2, 3, 45];
 
-export type ArrayOfLengthPickNumber<T, L extends SubtractInput> = L extends 0 ? {} : L extends 1 ? Record<0, T> : ArrayOfLengthPickNumber<T, Exclude<SubtractOne<L>, -1>> &
-    Record<SubtractOne<L>, T>;
+export type ArrayOfLengthPickNumber<T, L extends SubtractInput> = L extends 0
+    ? {}
+    : L extends 1
+    ? Record<0, T>
+    : ArrayOfLengthPickNumber<T, Exclude<SubtractOne<L>, -1>> &
+          Record<SubtractOne<L>, T>;

@@ -8,4 +8,4 @@ import { SubtractInput } from "./SubtractInput";
 //         ? [T]
 //         : FlatArray<[ArrayOfLength<T, SubtractOne<L>>, [T]], 1>);
 export type ArrayOfLength<T, L extends SubtractInput> = T[] &
-    ArrayOfLengthPickNumber<T, L> & { length: L; };
+    ArrayOfLengthPickNumber<T, L> & { length: L };
