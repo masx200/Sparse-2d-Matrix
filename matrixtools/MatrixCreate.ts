@@ -4,7 +4,7 @@ import { MatrixSymbol } from "./MatrixSymbol";
 import { Matrix } from "./Matrix";
 import { asserttrue } from "../test/asserttrue";
 import { MatrixOptions } from "./MatrixOptions";
-import { HugeMap } from "./HugeMap";
+
 import { max_size_of_map } from "./max_size_of_map";
 import { MatrixToArrays } from "./MatrixToArrays";
 /* 创建稀疏二维矩阵 非对称*/
@@ -13,6 +13,11 @@ export function MatrixCreate<
     C extends number = number
 >(opts: MatrixOptions<R, C>): Matrix<R, C> {
     const { row, column, initializer } = opts;
+    if (row * column > max_size_of_map) {
+        throw new Error(
+            "can not create map size greater than " + max_size_of_map
+        );
+    }
     function assertnotoutofbounds(inputrow: number, inputcolumn: number) {
         //序号应该从0开始到row-1结束
         if (
@@ -34,10 +39,11 @@ export function MatrixCreate<
     /* Map maximum size exceeded 
     16777216
     */
-    const valuesrecord: Map<`${number},${number}`, number> =
-        row * column < max_size_of_map
-            ? new Map<`${number},${number}`, number>()
-            : new HugeMap<`${number},${number}`, number>();
+    const valuesrecord: Map<`${number},${number}`, number> = new Map<
+        `${number},${number}`,
+        number
+    >();
+
     const defaultvalue = 0;
 
     //opts?.default ?? 0;

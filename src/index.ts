@@ -40,9 +40,8 @@ import { MatrixTranspose } from "../matrixtools/MatrixTranspose";
 import { assertMatrixColumn } from "../matrixtools/assertMatrixColumn";
 import { assertMatrixRow } from "../matrixtools/assertMatrixRow";
 import { assertMatrixRowColumn } from "../matrixtools/assertMatrixRowColumn";
-import { HugeMap } from "../matrixtools/HugeMap";
+
 export {
-    HugeMap,
     assertMatrixColumn,
     assertMatrixRow,
     assertMatrixRowColumn,
