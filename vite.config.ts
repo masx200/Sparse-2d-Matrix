@@ -1,4 +1,4 @@
-import { getBabelOutputPlugin } from "@rollup/plugin-babel";
+import { getBabelOutputPlugin, babel } from "@rollup/plugin-babel";
 import path from "path";
 import { terser } from "rollup-plugin-terser";
 import { MinifyOptions } from "terser";
@@ -20,27 +20,41 @@ export default defineConfig(({ mode, command }) => {
         // esbuild: { drop: isdrop ? ["console", "debugger"] : undefined },
         root: path.resolve(__dirname, "src"),
         plugins: [
-            ts({ transpiler: "typescript" }),
+            ts({
+                transpiler: "typescript",
+            }),
             // mode === "production" &&
             //     command === "build" &&
 
-            // babel({
-            //     extensions: [".ts", ".js"],
-            //     presets: ["@babel/preset-typescript"],
-            //     plugins: [
-            //         "babel-plugin-clean-code",
-            //         [
-            //             "babel-plugin-import",
-            //             {
-            //                 libraryName: "lodash",
-            //                 libraryDirectory: "",
-            //                 camel2DashComponentName: false, // default: true
-            //             },
-            //         ],
-            //     ],
-            // }),
+            babel({
+                extensions: [".ts", ".js"],
+                presets: [
+                    [
+                        "@babel/preset-env",
+                        {
+                            corejs: "3",
+                            useBuiltIns: "entry",
+                            targets: {
+                                esmodules: true,
+                            },
+                        },
+                    ],
+                    // "@babel/preset-typescript"
+                ],
+                plugins: [
+                    // "babel-plugin-clean-code",
+                    // [
+                    //     "babel-plugin-import",
+                    //     {
+                    //         libraryName: "lodash",
+                    //         libraryDirectory: "",
+                    //         camel2DashComponentName: false, // default: true
+                    //     },
+                    // ],
+                ],
+            }),
             getBabelOutputPlugin({
-                // presets: ["babel-preset-minify"],
+                presets: ["babel-preset-minify"],
                 // extensions: [".ts", ".js"],
                 plugins: [
                     isdrop && "babel-plugin-clean-code",
@@ -48,7 +62,7 @@ export default defineConfig(({ mode, command }) => {
                 ].filter(Boolean),
             }),
             terser(terserOptions),
-        ].filter(Boolean),
+        ],
         build: {
             lib: {
                 entry: path.resolve(__dirname, "src", "index.ts"),
