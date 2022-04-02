@@ -10,4 +10,8 @@ export type HighDimensionalMap<K, V, D extends SubtractInput> = Map<
     dimension: D;
     [raw_symbol]: HighDimensionalMapRaw<K, V, D>;
     [HighDimensional_symbol]: true;
+    set(
+        key: KeysOfHighDimensionalMap<K, D>,
+        value: V
+    ): HighDimensionalMap<K, V, D>;
 };

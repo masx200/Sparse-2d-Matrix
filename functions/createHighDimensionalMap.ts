@@ -22,21 +22,41 @@ export function createHighDimensionalMap<
         K,
         ExtractMapValue<HighDimensionalMapRaw<K, V, D>>
     >() as HighDimensionalMapRaw<K, V, D>;
-    function clear() {
+    function clear(): void {
         raw.clear();
     }
-    const keysValidator = createKeysValidator;
+    // const keysValidator: typeof createKeysValidator<K,D> = createKeysValidator;
     const createOrGetDeepestMap = createGetOrCreateDeepestMap;
-    function entries() {}
+    function entries(): IterableIterator<[KeysOfHighDimensionalMap<K, D>, V]> {}
+    const get = (keys: KeysOfHighDimensionalMap<K, D>): V | undefined => {
+        createKeysValidator<K, D>(dimension, keys);
+        const deepest_map = createOrGetDeepestMap(raw, keys);
+        const last_key = keys.slice(-1)[0];
+        return deepest_map.get(last_key);
+    };
+    const keys = (): IterableIterator<KeysOfHighDimensionalMap<K, D>> => {
+
+
+        
+    };
     const obj: HighDimensionalMap<K, V, D> = {
-        get(keys: KeysOfHighDimensionalMap<K, D>) {
+        get,
+        set(keys: KeysOfHighDimensionalMap<K, D>, value: V) {
+            createKeysValidator<K, D>(dimension, keys);
             const deepest_map = createOrGetDeepestMap(raw, keys);
+            const last_key = keys.slice(-1)[0];
+            deepest_map.set(last_key, value);
+            return obj;
         },
-        set(keys: KeysOfHighDimensionalMap<K, D>, value: V) {},
-        delete(keys: KeysOfHighDimensionalMap<K, D>) {},
-        keys() {},
-        values() {},
-        entries() {
+        delete(keys: KeysOfHighDimensionalMap<K, D>) {
+            createKeysValidator<K, D>(dimension, keys);
+            const deepest_map = createOrGetDeepestMap(raw, keys);
+            const last_key = keys.slice(-1)[0];
+            return deepest_map.delete(last_key);
+        },
+        keys,
+        values(): IterableIterator<V> {},
+        entries(): IterableIterator<[KeysOfHighDimensionalMap<K, D>, V]> {
             return entries();
         },
         [HighDimensional_symbol]: true,
@@ -46,7 +66,9 @@ export function createHighDimensionalMap<
         get [Symbol.toStringTag]() {
             return "HighDimensionalMap";
         },
-        [Symbol.iterator]() {
+        [Symbol.iterator](): IterableIterator<
+            [KeysOfHighDimensionalMap<K, D>, V]
+        > {
             return entries();
         },
     };
@@ -59,7 +81,7 @@ function createGetOrCreateDeepestMap<K, V, D extends Exclude<SubtractInput, 0>>(
     return (function createOrGetDeepestMap(
         keys: KeysOfHighDimensionalMap<K, D>
     ): Map<K, V> {
-        const map: Map<K, V> = keys.reduce(
+        const map: Map<K, V> = keys.slice(0, -1).reduce(
             //@ts-ignore
             (p: Map<K, any>, key) => {
                 return getOrCreateMapOfMap<K, ExtractMapValue<typeof p>>(
