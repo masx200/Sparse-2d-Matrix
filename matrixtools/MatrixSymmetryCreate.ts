@@ -5,6 +5,7 @@ import { MatrixSymmetry } from "./MatrixSymmetry";
 import { MatrixSymmetryOptions } from "./MatrixSymmetryOptions";
 import { MatrixToArrays } from "./MatrixToArrays";
 import { MatrixForEach } from "./MatrixForEach";
+import { assertInteger } from "../test/assertInteger";
 /**
  *
  * 创建稀疏二维矩阵对称式
@@ -14,6 +15,8 @@ export function MatrixSymmetryCreate<R extends number = number>(
 ): MatrixSymmetry<R> {
     const { row } = opts;
     const column = row;
+    assertInteger(row);
+    assertInteger(column);
     function assertnotoutofbounds(inputrow: number, inputcolumn: number) {
         //序号应该从0开始到row-1结束
         if (
@@ -33,18 +36,28 @@ export function MatrixSymmetryCreate<R extends number = number>(
     const defaultvalue = 0;
 
     // opts?.default ?? 0;
-    function get(row: number, column: number): number {
-        assertnotoutofbounds(row, column);
+    function get(inputrow: number, inputcolumn: number): number {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
+        assertnotoutofbounds(inputrow, inputcolumn);
         return (
-            matrix.get(Math.min(row, column), Math.max(row, column)) ??
-            defaultvalue
+            matrix.get(
+                Math.min(inputrow, inputcolumn),
+                Math.max(inputrow, inputcolumn)
+            ) ?? defaultvalue
         );
     }
 
-    function set(row: number, column: number, value: number): void {
-        assertnotoutofbounds(row, column);
+    function set(inputrow: number, inputcolumn: number, value: number): void {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
+        assertnotoutofbounds(inputrow, inputcolumn);
         assert_true(typeof value === "number");
-        matrix.set(Math.min(row, column), Math.max(row, column), value);
+        matrix.set(
+            Math.min(inputrow, inputcolumn),
+            Math.max(inputrow, inputcolumn),
+            value
+        );
     }
     // console.log(Matrix);
     function values(): number[] {
@@ -65,12 +78,20 @@ export function MatrixSymmetryCreate<R extends number = number>(
             return [left, right, get(left, right)];
         });
     }
-    const has = (row: number, column: number) =>
-        matrix.has(row, column) || matrix.has(column, row);
+    const has = (inputrow: number, inputcolumn: number): boolean => {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
+        return (
+            matrix.has(inputrow, inputcolumn) ||
+            matrix.has(inputcolumn, inputrow)
+        );
+    };
     const at = (inputrow: number, inputcolumn: number) => {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
         return get(
             inputrow < 0 ? row + inputrow : inputrow,
-            inputcolumn < 0 ? column + inputcolumn : column
+            inputcolumn < 0 ? column + inputcolumn : inputcolumn
         );
     };
 

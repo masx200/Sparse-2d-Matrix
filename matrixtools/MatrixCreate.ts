@@ -9,13 +9,15 @@ import { max_size_of_map } from "./max_size_of_map";
 import { MatrixToArrays } from "./MatrixToArrays";
 import { assertnumber } from "../test/assertnumber";
 import { MatrixForEach } from "./MatrixForEach";
+import { assertInteger } from "../test/assertInteger";
 /* 创建稀疏二维矩阵 非对称*/
 export function MatrixCreate<
     R extends number = number,
     C extends number = number
 >(opts: MatrixOptions<R, C>): Matrix<R, C> {
     const { row, column, initializer } = opts;
-
+    assertInteger(row);
+    assertInteger(column);
     /* Map maximum size exceeded 
     16777216
     */
@@ -73,6 +75,8 @@ export function MatrixCreate<
 
     //opts?.default ?? 0;
     function get(inputrow: number, inputcolumn: number): number {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
         assertnotoutofbounds(inputrow, inputcolumn);
         const map = get_map_of_row_and_column(inputrow, inputcolumn);
         return (
@@ -81,13 +85,17 @@ export function MatrixCreate<
         );
     }
     const at = (inputrow: number, inputcolumn: number) => {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
         return get(
             inputrow < 0 ? row + inputrow : inputrow,
-            inputcolumn < 0 ? column + inputcolumn : column
+            inputcolumn < 0 ? column + inputcolumn : inputcolumn
         );
     };
 
     function set(inputrow: number, inputcolumn: number, value: number): void {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
         assertnumber(value);
         assertnotoutofbounds(inputrow, inputcolumn);
         assert_true(!Number.isNaN(value));
@@ -117,6 +125,8 @@ export function MatrixCreate<
         });
     }
     const has = (inputrow: number, inputcolumn: number) => {
+        assertInteger(inputrow);
+        assertInteger(inputcolumn);
         if (
             inputrow > row - 1 ||
             inputcolumn > column - 1 ||
