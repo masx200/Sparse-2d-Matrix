@@ -20,7 +20,7 @@
         "test": "jest",
         "build": "tsc && vite build&& rollup -c rollup.config.mjs",
         "check": "tsc",
-        "format": "npx prettier --write *.json *.ts  */*.ts *.md *.js "
+        "format": "npx prettier --write *.json *.ts  */*.ts *.md *.cjs *.mjs "
     },
     "devDependencies": {
         "@babel/core": "^7.17.8",

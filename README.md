@@ -170,6 +170,8 @@ import {
 
 `[Symbol.iterator]`,把矩阵转化为数组表示的迭代器
 
+`forEach`:对矩阵的每个元素执行一次给定的函数。
+
 4.接口
 
 `MatrixOptions`,创建矩阵的参数对象拥有以下参数

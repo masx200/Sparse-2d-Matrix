@@ -4,6 +4,7 @@ import { MatrixCreate } from "./MatrixCreate";
 import { MatrixSymmetry } from "./MatrixSymmetry";
 import { MatrixSymmetryOptions } from "./MatrixSymmetryOptions";
 import { MatrixToArrays } from "./MatrixToArrays";
+import { MatrixForEach } from "./MatrixForEach";
 /**
  *
  * 创建稀疏二维矩阵对称式
@@ -101,6 +102,9 @@ export function MatrixSymmetryCreate<R extends number = number>(
         },
         [Symbol.iterator]() {
             return MatrixToArrays(obj)[Symbol.iterator]();
+        },
+        forEach(callback): void {
+            MatrixForEach(obj, callback);
         },
     };
 
