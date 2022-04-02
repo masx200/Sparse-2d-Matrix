@@ -17,12 +17,13 @@ export function MatrixCreate<
     C extends number = number
 >(opts: MatrixOptions<R, C>): Matrix<R, C> {
     const { row, column, initializer } = opts;
+    assertInteger(row);
+    assertInteger(column);
     assert_true(
         column <= max_size_of_map && row <= max_size_of_map,
         "row and column can not greater than " + max_size_of_map
     );
-    assertInteger(row);
-    assertInteger(column);
+
     if (!(row > 0 && column > 0)) {
         throw new Error(" row, column should greater than 0");
     }
