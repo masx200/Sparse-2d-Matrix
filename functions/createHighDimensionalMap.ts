@@ -1,5 +1,6 @@
 import { assertInteger } from "../test/assertInteger";
 import { assert_true } from "../test/assert_true";
+import { assert_not_undefined } from "./assert_not_undefined";
 import { createGetOrCreateDeepestMap } from "./createGetOrCreateDeepestMap";
 import { assertValidateKeys as assertValidateKeys } from "./createKeysValidator";
 import { ExtractMapValue } from "./ExtractMapValue";
@@ -53,11 +54,7 @@ export function createHighDimensionalMap<
         });
         return result[Symbol.iterator]();
     };
-    function assert_not_undefined(
-        v: any
-    ): asserts v is Exclude<any, undefined> {
-        assert_true(typeof v !== "undefined");
-    }
+
     const obj: HighDimensionalMap<K, V, D> = {
         get,
         set(keys: KeysOfHighDimensionalMap<K, D>, value: V) {
@@ -86,7 +83,7 @@ export function createHighDimensionalMap<
         },
         [HighDimensional_symbol]: true,
         dimension,
-        [raw_symbol]: raw,
+        // [raw_symbol]: raw,
         clear,
         get [Symbol.toStringTag]() {
             return "HighDimensionalMap";
