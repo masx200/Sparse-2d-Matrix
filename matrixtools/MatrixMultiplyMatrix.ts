@@ -1,5 +1,5 @@
 // import { dot } from "mathjs";
-import { asserttrue } from "../test/asserttrue";
+import { assert_true } from "../test/assert_true";
 import { dot } from "./dot";
 import { Matrix } from "./Matrix";
 import { MatrixCreate } from "./MatrixCreate";
@@ -14,7 +14,7 @@ export function MatrixMultiplyMatrix<
     // asserttrue(dot([3,4],[2,4])===22)
     const row = matrix1.row;
     const column = matrix2.column;
-    asserttrue(matrix1.column === matrix2.row);
+    assert_true(matrix1.column === matrix2.row);
     const result = MatrixCreate({
         row,
         column,

@@ -1,4 +1,4 @@
-import { asserttrue } from "../test/asserttrue";
+import { assert_true } from "../test/assert_true";
 import { Matrix } from "./Matrix";
 import { MatrixReduceSeries } from "./MatrixReduceSeries";
 
@@ -6,7 +6,7 @@ export function MatrixMin<R extends number, C extends number>(
     matrix1: Matrix<R, C>,
     ...matrixs: Matrix<R, C>[]
 ) {
-    asserttrue(matrixs.length, "invalid arguments matrixs");
+    assert_true(matrixs.length, "invalid arguments matrixs");
     return MatrixReduceSeries(
         (previousValue: number, currentValue: number) => {
             return Math.min(previousValue, currentValue);

@@ -1,4 +1,4 @@
-import { asserttrue } from "../test/asserttrue";
+import { assert_true } from "../test/assert_true";
 import { matrixkeyiterator } from "./matrixkeyiterator";
 import { MatrixCreate } from "./MatrixCreate";
 import { MatrixSymmetry } from "./MatrixSymmetry";
@@ -42,7 +42,7 @@ export function MatrixSymmetryCreate<R extends number = number>(
 
     function set(row: number, column: number, value: number): void {
         assertnotoutofbounds(row, column);
-        asserttrue(typeof value === "number");
+        assert_true(typeof value === "number");
         matrix.set(Math.min(row, column), Math.max(row, column), value);
     }
     // console.log(Matrix);
@@ -93,7 +93,9 @@ export function MatrixSymmetryCreate<R extends number = number>(
         entries,
         get,
         set,
-        [Symbol.toStringTag]: "MatrixSymmetry",
+        get [Symbol.toStringTag]() {
+            return "MatrixSymmetry";
+        },
         toJSON() {
             return MatrixToArrays(obj);
         },

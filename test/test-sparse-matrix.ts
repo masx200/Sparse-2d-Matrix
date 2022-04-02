@@ -30,34 +30,34 @@ import {
     MatrixTrace,
 } from "../src/index";
 import { assertshouldcatcherror } from "./assertshouldcatcherror";
-import { asserttrue } from "./asserttrue";
+import { assert_true } from "./assert_true";
 
 export function testMatrix() {
     console.log("test Matrix start");
     const ms1 = MatrixSymmetryCreate({ row: 10 });
-    asserttrue(0 === ms1.get(0, 9));
+    assert_true(0 === ms1.get(0, 9));
 
     ms1.set(8, 7, 99);
-    asserttrue(99 === ms1.get(8, 7));
-    asserttrue(ms1.has(8, 7));
-    asserttrue(!ms1.has(18, 7));
-    asserttrue(99 === ms1.get(7, 8));
-    asserttrue(!isMatrixSymmetry([]));
-    asserttrue(!isMatrixSymmetry({}));
-    asserttrue(!isMatrixSymmetry(1));
-    asserttrue(!isMatrix(false));
-    asserttrue(isMatrix(MatrixSymmetryCreate({ row: 1 })));
+    assert_true(99 === ms1.get(8, 7));
+    assert_true(ms1.has(8, 7));
+    assert_true(!ms1.has(18, 7));
+    assert_true(99 === ms1.get(7, 8));
+    assert_true(!isMatrixSymmetry([]));
+    assert_true(!isMatrixSymmetry({}));
+    assert_true(!isMatrixSymmetry(1));
+    assert_true(!isMatrix(false));
+    assert_true(isMatrix(MatrixSymmetryCreate({ row: 1 })));
 
-    asserttrue(isMatrixSymmetry(MatrixSymmetryCreate({ row: 1 })));
+    assert_true(isMatrixSymmetry(MatrixSymmetryCreate({ row: 1 })));
     const matrix3 = MatrixCreate({
         row: 3,
         column: 2,
         initializer: (i, j) => i + j,
     });
-    asserttrue(matrix3.has(0, 0));
-    asserttrue(matrix3.has(2, 1));
-    asserttrue(!matrix3.has(10, 0));
-    asserttrue(!matrix3.has(10, 100));
+    assert_true(matrix3.has(0, 0));
+    assert_true(matrix3.has(2, 1));
+    assert_true(!matrix3.has(10, 0));
+    assert_true(!matrix3.has(10, 100));
     assertshouldcatcherror(() => {
         MatrixOfArrays([]);
     });
@@ -67,7 +67,7 @@ export function testMatrix() {
     ]);
     console.log(matrix1);
     console.log("entries", matrix1.entries());
-    asserttrue(
+    assert_true(
         isEqual(
             [
                 [0, 0, 1],
@@ -78,12 +78,12 @@ export function testMatrix() {
             matrix1.entries()
         )
     );
-    asserttrue(isMatrix(matrix1));
-    asserttrue(!isMatrix([]));
-    asserttrue(matrix1.at(-1, -1) === 4);
+    assert_true(isMatrix(matrix1));
+    assert_true(!isMatrix([]));
+    assert_true(matrix1.at(-1, -1) === 4);
     const arrays = MatrixToArrays(matrix1);
     console.log("arrays:", arrays);
-    asserttrue(
+    assert_true(
         isEqual(arrays, [
             [1, 2],
             [3, 4],
@@ -98,7 +98,7 @@ export function testMatrix() {
             ])
         );
     });
-    asserttrue(
+    assert_true(
         isEqual(
             [
                 [4, 3],
@@ -119,7 +119,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         isEqual(
             [
                 [4, 4],
@@ -156,7 +156,7 @@ export function testMatrix() {
         [3, 4],
         [3, 4],
     ]);
-    asserttrue(
+    assert_true(
         isEqual(matrix2.entries(), [
             [0, 0, 1],
             [0, 1, 2],
@@ -175,13 +175,13 @@ export function testMatrix() {
     console.log(matrix2.entries());
     console.log(matrix3.entries());
     console.log(MatrixToArrays(matrix2), MatrixToArrays(matrix3));
-    asserttrue(isEqual(MatrixToArrays(matrix2), MatrixToArrays(matrix3)));
-    asserttrue(MatrixEquals(matrix2, matrix3));
-    asserttrue(MatrixEquals(matrix2, MatrixFrom(matrix3), matrix3));
-    asserttrue(!MatrixEquals(MatrixFrom(matrix3), MatrixTranspose(matrix3)));
+    assert_true(isEqual(MatrixToArrays(matrix2), MatrixToArrays(matrix3)));
+    assert_true(MatrixEquals(matrix2, matrix3));
+    assert_true(MatrixEquals(matrix2, MatrixFrom(matrix3), matrix3));
+    assert_true(!MatrixEquals(MatrixFrom(matrix3), MatrixTranspose(matrix3)));
     console.log(MatrixTranspose(matrix3));
     console.log(MatrixTranspose(matrix3).entries());
-    asserttrue(
+    assert_true(
         isEqual(
             [
                 [0, 0, 0],
@@ -200,7 +200,7 @@ export function testMatrix() {
         initializer: (i, j) => i * j,
     });
     console.log(MatrixToArrays(matrix4));
-    asserttrue(
+    assert_true(
         isEqual(
             [
                 [0, 0],
@@ -212,7 +212,7 @@ export function testMatrix() {
     );
     MatrixFill(matrix4, 9);
     console.log(MatrixToArrays(matrix4));
-    asserttrue(
+    assert_true(
         isEqual(
             [
                 [9, 9],
@@ -222,9 +222,9 @@ export function testMatrix() {
             MatrixToArrays(matrix4)
         )
     );
-    asserttrue(MatrixFrom(matrix3) != matrix3);
-    asserttrue(MatrixEquals(MatrixFrom(matrix3), matrix3));
-    asserttrue(
+    assert_true(MatrixFrom(matrix3) != matrix3);
+    assert_true(MatrixEquals(MatrixFrom(matrix3), matrix3));
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [1, 1],
@@ -242,7 +242,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [0, 0],
@@ -260,7 +260,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEvery(
             MatrixOfArrays([
                 [0, 0],
@@ -269,7 +269,7 @@ export function testMatrix() {
             (v) => v === 0
         )
     );
-    asserttrue(
+    assert_true(
         MatrixSome(
             MatrixOfArrays([
                 [0, 1],
@@ -279,7 +279,7 @@ export function testMatrix() {
         )
     );
 
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [1, -1],
@@ -297,7 +297,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [3, 0],
@@ -313,7 +313,7 @@ export function testMatrix() {
         )
     );
 
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [6, 0],
@@ -335,7 +335,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [1, 0],
@@ -344,7 +344,7 @@ export function testMatrix() {
             MatrixIdentity({ row: 2, column: 2 })
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [0, 0],
@@ -353,7 +353,7 @@ export function testMatrix() {
             MatrixOfZeros({ row: 2, column: 2 })
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [1, 1, 1],
@@ -376,7 +376,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         isEqual(
             [1, 2],
             MatrixGetRow(
@@ -388,7 +388,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         isEqual(
             [1, 3],
             MatrixGetColumn(
@@ -401,7 +401,7 @@ export function testMatrix() {
         ),
         "MatrixGetColumn"
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixMultiplication(
                 MatrixOfArrays([
@@ -433,7 +433,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [3, 3],
@@ -452,7 +452,7 @@ export function testMatrix() {
         )
     );
 
-    asserttrue(
+    assert_true(
         6 ===
             MatrixTrace(
                 MatrixOfArrays([
@@ -461,7 +461,7 @@ export function testMatrix() {
                 ])
             )
     );
-    asserttrue(
+    assert_true(
         isEqual(
             [3, 6],
             MatrixGetDiagonal(
@@ -472,7 +472,7 @@ export function testMatrix() {
             )
         )
     );
-    asserttrue(
+    assert_true(
         MatrixEquals(
             MatrixOfArrays([
                 [3, 0],

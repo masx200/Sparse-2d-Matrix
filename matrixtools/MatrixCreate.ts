@@ -2,7 +2,7 @@ import { numberstostringkeynotsymmetry } from "../functions/numberstostringkeyno
 import { matrixkeyiterator } from "./matrixkeyiterator";
 import { MatrixSymbol } from "./MatrixSymbol";
 import { Matrix } from "./Matrix";
-import { asserttrue } from "../test/asserttrue";
+import { assert_true } from "../test/assert_true";
 import { MatrixOptions } from "./MatrixOptions";
 
 import { max_size_of_map } from "./max_size_of_map";
@@ -89,7 +89,7 @@ export function MatrixCreate<
     function set(inputrow: number, inputcolumn: number, value: number): void {
         assertnumber(value);
         assertnotoutofbounds(inputrow, inputcolumn);
-        asserttrue(!Number.isNaN(value));
+        assert_true(!Number.isNaN(value));
         const map = get_map_of_row_and_column(inputrow, inputcolumn);
         if (defaultvalue === value) {
             map.delete(numberstostringkeynotsymmetry(inputrow, inputcolumn));
@@ -151,7 +151,9 @@ export function MatrixCreate<
         //         numberstostringkeynotsymmetry(row, column)
         //     );
         // },
-        [Symbol.toStringTag]: "Matrix",
+        get [Symbol.toStringTag]() {
+            return "Matrix";
+        },
     };
 
     if (initializer) {
