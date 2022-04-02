@@ -1,4 +1,4 @@
-import { numberstostringkeynotsymmetry } from "../functions/numberstostringkeynotsymmetry";
+// import { numberstostringkeynotsymmetry } from "../functions/numberstostringkeynotsymmetry";
 import { matrixkeyiterator } from "./matrixkeyiterator";
 import { MatrixSymbol } from "./MatrixSymbol";
 import { Matrix } from "./Matrix";
@@ -10,48 +10,33 @@ import { MatrixToArrays } from "./MatrixToArrays";
 import { assertnumber } from "../test/assertnumber";
 import { MatrixForEach } from "./MatrixForEach";
 import { assertInteger } from "../test/assertInteger";
+import { createHighDimensionalMap2 } from "../functions/createHighDimensionalMap2";
 /* 创建稀疏二维矩阵 非对称*/
 export function MatrixCreate<
     R extends number = number,
     C extends number = number
 >(opts: MatrixOptions<R, C>): Matrix<R, C> {
     const { row, column, initializer } = opts;
+    assert_true(
+        column <= max_size_of_map && row <= max_size_of_map,
+        "row and column can not greater than " + max_size_of_map
+    );
     assertInteger(row);
     assertInteger(column);
+    if (!(row > 0 && column > 0)) {
+        throw new Error(" row, column should greater than 0");
+    }
+
+    const defaultvalue = 0;
+
     /* Map maximum size exceeded 
     16777216
     */
-    const valuesrecord: Map<
-        number,
-        Map<`${number},${number}`, number>
-    > = new Map();
-    function get_index_of_row_and_column(
-        inputrow: number,
-        inputcolumn: number
-    ): number {
-        return Math.floor(
-            ((inputrow + 1) * (1 + inputcolumn)) / max_size_of_map
-        );
-    }
-    function get_map_of_row_and_column(
-        inputrow: number,
-        inputcolumn: number
-    ): Map<`${number},${number}`, number> {
-        const index = get_index_of_row_and_column(inputrow, inputcolumn);
-        const map = valuesrecord.get(index);
-        if (map) {
-            return map;
-        } else {
-            const created = new Map();
-            valuesrecord.set(index, created);
-            return created;
-        }
-    }
-    // if (row * column > max_size_of_map) {
-    //     throw new Error(
-    //         "can not create map size greater than " + max_size_of_map
-    //     );
-    // }
+    // const valuesrecord: Map<
+    //     number,
+    //     Map<`${number},${number}`, number>
+    // > = new Map();
+    const store = createHighDimensionalMap2<number, number>();
     function assertnotoutofbounds(inputrow: number, inputcolumn: number) {
         //序号应该从0开始到row-1结束
         if (
@@ -67,22 +52,14 @@ export function MatrixCreate<
             return true;
         }
     }
-    if (!(row > 0 && column > 0)) {
-        throw new Error(" row, column should greater than 0");
-    }
-
-    const defaultvalue = 0;
 
     //opts?.default ?? 0;
     function get(inputrow: number, inputcolumn: number): number {
         assertInteger(inputrow);
         assertInteger(inputcolumn);
         assertnotoutofbounds(inputrow, inputcolumn);
-        const map = get_map_of_row_and_column(inputrow, inputcolumn);
-        return (
-            map.get(numberstostringkeynotsymmetry(inputrow, inputcolumn)) ??
-            defaultvalue
-        );
+        const map = store;
+        return map.get([inputrow, inputcolumn]) ?? defaultvalue;
     }
     const at = (inputrow: number, inputcolumn: number) => {
         assertInteger(inputrow);
@@ -99,13 +76,14 @@ export function MatrixCreate<
         assertnumber(value);
         assertnotoutofbounds(inputrow, inputcolumn);
         assert_true(!Number.isNaN(value));
-        const map = get_map_of_row_and_column(inputrow, inputcolumn);
+        const map = store;
+        const currentkeys: [number, number] = [inputrow, inputcolumn];
         if (defaultvalue === value) {
-            map.delete(numberstostringkeynotsymmetry(inputrow, inputcolumn));
+            map.delete(currentkeys);
             return;
         }
 
-        map.set(numberstostringkeynotsymmetry(inputrow, inputcolumn), value);
+        map.set(currentkeys, value);
     }
     // console.log(valuesrecord);
     function values(): number[] {

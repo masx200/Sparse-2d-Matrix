@@ -5,6 +5,6 @@ import { HighDimensionalMap } from "./HighDimensionalMap";
 //     HighDimensionalMapRaw4,
 // } from "./High-dimensional-Map";
 
-export function createHighDimensionalMap4<K, V>(): HighDimensionalMap<K, V, 4> {
-    return createHighDimensionalMap<K, V, 4>(4);
+export function createHighDimensionalMap2<K, V>(): HighDimensionalMap<K, V, 2> {
+    return createHighDimensionalMap<K, V, 2>(2);
 }

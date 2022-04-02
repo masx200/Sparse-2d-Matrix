@@ -5,7 +5,9 @@ export type Matrix<R extends number = number, C extends number = number> = {
     forEach(
         callback: (value: number, row: number, column: number) => void
     ): void;
+    /**  转换成arrays输出 */
     [Symbol.iterator](): IterableIterator<number[]>;
+    /**  转换成arrays输出 */
     toJSON: () => number[][];
     values: () => number[];
     keys: () => [number, number][];
