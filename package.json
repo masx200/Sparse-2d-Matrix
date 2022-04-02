@@ -1,6 +1,6 @@
 {
     "type": "module",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "resolutions": {
         "minimist": "1.2.6"
     },
