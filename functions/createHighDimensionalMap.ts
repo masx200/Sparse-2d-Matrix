@@ -7,7 +7,7 @@ import { ExtractMapValue } from "./ExtractMapValue";
 import {
     HighDimensionalMap,
     HighDimensional_symbol,
-    raw_symbol,
+    // raw_symbol,
 } from "./HighDimensionalMap";
 import { HighDimensionalMapRaw } from "./HighDimensionalMapRaw";
 import { iterate_deep_map_keys } from "./iterate_map_keys";
@@ -56,6 +56,20 @@ export function createHighDimensionalMap<
     };
 
     const obj: HighDimensionalMap<K, V, D> = {
+        forEach(callback) {
+            [...entries()].forEach(([k, v]) => {
+                callback(v, k, obj);
+            });
+        },
+        get size() {
+            return [...keys()].length;
+        },
+        has(keys: KeysOfHighDimensionalMap<K, D>): boolean {
+            assertValidateKeys<K, D>(dimension, keys);
+            const deepest_map = createOrGetDeepestMap(raw, keys);
+            const last_key = keys.slice(-1)[0];
+            return deepest_map.has(last_key);
+        },
         get,
         set(keys: KeysOfHighDimensionalMap<K, D>, value: V) {
             assert_not_undefined(value);
