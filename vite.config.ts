@@ -67,6 +67,7 @@ export default defineConfig(({ mode, command }) => {
             terser(terserOptions),
         ],
         build: {
+            sourcemap: "inline",
             lib: {
                 entry: path.resolve(__dirname, "src", "index.ts"),
                 formats: ["es" /* , "cjs" */],

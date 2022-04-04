@@ -130,10 +130,18 @@ export function MatrixSymmetryCreate<R extends number = number>(
     };
 
     if (initializer) {
-        for (let [i, j] of matrixkeyiterator(row, column)) {
+        for (let [i, j] of Array.from(matrixkeyiterator(row, column)).filter(
+            ([i, j]) => {
+                return i >= j;
+            }
+        )) {
+            //对称矩阵只要初始化一半即可
+
             const value = initializer(i, j);
-            if (typeof value === "number") {
+            if (typeof value === "number" && !Number.isNaN(value)) {
                 set(i, j, value);
+            } else {
+                throw new Error("invalid return value:" + value);
             }
         }
     }
