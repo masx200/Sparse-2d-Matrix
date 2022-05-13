@@ -1,4 +1,4 @@
-// import { dot } from "mathjs";
+
 import { assert_true } from "../test/assert_true";
 import { dot } from "./dot";
 import { Matrix } from "./Matrix";
