@@ -84,3 +84,4 @@ export {
     MatrixGetDiagonal,
     MatrixTrace,
 };
+export { MatrixSymmetryOfArrays } from "../matrixtools/MatrixSymmetryOfArrays";
