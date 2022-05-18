@@ -19,6 +19,9 @@ export function MatrixSymmetryCreate<R extends number = number>(
     const column = row;
     assertInteger(row);
     assertInteger(column);
+    if (!(row > 0 && column > 0)) {
+        throw new Error(" row, column should greater than 0");
+    }
     function assertnotoutofbounds(inputrow: number, inputcolumn: number) {
         //序号应该从0开始到row-1结束
         if (
