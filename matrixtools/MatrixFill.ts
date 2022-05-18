@@ -8,10 +8,4 @@ export function MatrixFill<R extends number, C extends number>(
     matrix.keys().forEach(([r, c]) => {
         matrix.set(r, c, value);
     });
-    // const { row, column } = matrix;
-
-    // for (let [i, j] of matrixkeyiterator(row, column)) {
-    //     // console.log({ i, j });
-    //     matrix.set(i, j, value);
-    // }
 }

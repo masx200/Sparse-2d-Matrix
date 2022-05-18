@@ -18,8 +18,7 @@ export type Matrix<R extends number = number, C extends number = number> = {
     at: (row: number, column: number) => number;
     set: (row: number, column: number, value: number) => void;
     [Symbol.toStringTag]: string;
-    // size(): number;
-    // clear: () => void;
+
     has: (row: number, column: number) => boolean;
-    // delete: (row: number, column: number) => boolean;
+    fill: (value: number) => void;
 } & { row: R; column: C } & { [MatrixSymbol]: true };

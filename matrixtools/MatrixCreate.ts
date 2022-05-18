@@ -1,4 +1,3 @@
-// import { numberstostringkeynotsymmetry } from "../functions/numberstostringkeynotsymmetry";
 import { matrixkeyiterator } from "./matrixkeyiterator";
 import { MatrixSymbol } from "./MatrixSymbol";
 import { Matrix } from "./Matrix";
@@ -11,6 +10,7 @@ import { assertnumber } from "../test/assertnumber";
 import { MatrixForEach } from "./MatrixForEach";
 import { assertInteger } from "../test/assertInteger";
 import { createHighDimensionalMap2 } from "../functions/createHighDimensionalMap2";
+import { MatrixFill } from "./MatrixFill";
 /* 创建稀疏二维矩阵 非对称*/
 export function MatrixCreate<
     R extends number = number,
@@ -131,21 +131,20 @@ export function MatrixCreate<
         [MatrixSymbol]: true,
         row: row as R,
         column: column as C,
-        // clear: () => valuesrecord.clear(),
+
         has,
-        // size: () => valuesrecord.size,
+
         values,
         keys,
         entries,
         get,
         set,
-        // delete: (row: number, column: number) => {
-        //     return valuesrecord.delete(
-        //         numberstostringkeynotsymmetry(row, column)
-        //     );
-        // },
+
         get [Symbol.toStringTag]() {
             return "Matrix";
+        },
+        fill(value: number) {
+            MatrixFill(obj, value);
         },
     };
 
