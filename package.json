@@ -1,6 +1,6 @@
 {
     "type": "module",
-    "version": "1.2.2",
+    "version": "1.3.0",
     "resolutions": {
         "minimist": "1.2.6"
     },
@@ -16,6 +16,10 @@
     "main": "dist/index.cjs.js",
     "module": "dist/index.es.js",
     "types": "dist/index.es.d.ts",
+    "exports": {
+        "import": "./dist/index.es.js",
+        "require": "./dist/index.cjs.js"
+    },
     "scripts": {
         "test": "jest",
         "build": "tsc --noEmit && vite build&& rollup -c rollup.config.mjs",
@@ -23,11 +27,11 @@
         "format": "npx prettier --write *.json *.ts  */*.ts *.md *.cjs *.mjs "
     },
     "devDependencies": {
-        "@babel/core": "^7.17.8",
-        "@babel/generator": "^7.17.7",
-        "@babel/plugin-syntax-typescript": "^7.16.7",
-        "@babel/preset-env": "^7.17.10",
-        "@babel/preset-typescript": "^7.16.7",
+        "@babel/core": "^7.17.12",
+        "@babel/generator": "^7.17.12",
+        "@babel/plugin-syntax-typescript": "^7.17.12",
+        "@babel/preset-env": "^7.17.12",
+        "@babel/preset-typescript": "^7.17.12",
         "@rollup/plugin-babel": "^5.3.1",
         "@types/jest": "^27.4.1",
         "@types/lodash": "^4.14.179",
@@ -38,7 +42,7 @@
         "jest": "^27.5.1",
         "lodash": "^4.17.21",
         "prettier": "^2.6.2",
-        "rollup": "^2.70.1",
+        "rollup": "^2.73.0",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-ts": "^2.0.7",
         "terser": "^5.12.0",
