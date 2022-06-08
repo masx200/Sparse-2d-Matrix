@@ -75,6 +75,7 @@ export function MatrixSymmetryCreate<R extends number = number>(
         assertInteger(inputcolumn);
         assertnotoutofbounds(inputrow, inputcolumn);
         assert_true(typeof value === "number");
+        assert_true(!Number.isNaN(value));
         matrix.set(
             Math.min(inputrow, inputcolumn),
             Math.max(inputrow, inputcolumn),
