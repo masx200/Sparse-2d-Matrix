@@ -41,7 +41,7 @@ export default defineConfig(({ mode, command }) => {
                             },
                         },
                     ],
-                    // "@babel/preset-typescript"
+                  
                 ],
                 plugins: [
                     // "babel-plugin-clean-code",
