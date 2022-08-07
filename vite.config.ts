@@ -4,6 +4,7 @@ import { terser } from "rollup-plugin-terser";
 import { MinifyOptions } from "terser";
 import { defineConfig, UserConfig } from "vite";
 import ts from "rollup-plugin-ts";
+import { PluginItem } from "@babel/core";
 export default defineConfig(({ mode, command }) => {
     console.log(mode, command);
     const isdrop = mode === "production" && command === "build";
@@ -61,7 +62,7 @@ export default defineConfig(({ mode, command }) => {
                 plugins: [
                     isdrop && "babel-plugin-clean-code",
                     // "@babel/plugin-syntax-typescript",
-                ].filter(Boolean),
+                ].filter(Boolean) as PluginItem[],
             }),
             //@ts-ignore
             terser(terserOptions),
