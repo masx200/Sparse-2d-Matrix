@@ -41,7 +41,6 @@ export default defineConfig(({ mode, command }) => {
                             },
                         },
                     ],
-                  
                 ],
                 plugins: [
                     // "babel-plugin-clean-code",
